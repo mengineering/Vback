@@ -20,7 +20,7 @@ def find_files(filename, search_path):
          result.append(os.path.join(root))
    return result
 
-install_location = "%s" % "','".join(find_files("Backup_dev.sh", "."))
+install_location = "%s" % "','".join(find_files("gui.py", "."))
 
 os.chdir(install_location)
 
@@ -47,11 +47,13 @@ def backup_launch():
 #   print(subprocess.check_call("./Backup_dev.sh", shell=True))
 
 def appendi_percorso():
+   os.chdir(install_location)
    with open("./source_folders.txt", "a") as f:
     f.write("%s\n" % entry.get())
     f.close
 
 def configurazione():
+   os.chdir(install_location)
    with open("./destinations.txt", "w") as f:
     f.write("%s\n" % dest_entry.get())
     f.close
