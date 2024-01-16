@@ -6,12 +6,8 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 import os
 
-
 #Inizio script gui
-## DA MODIFICARE
-
 # Cerco il la directory dove si trova Backup_dev.sh
-
 def find_files(filename, search_path):
    result = []
 
@@ -25,26 +21,8 @@ install_location = "%s" % "','".join(find_files("Backup_dev.sh", "."))
 os.chdir(install_location)
 
 #Bottone di avvio del processo di backup
-## DA MODIFICARE - NUOVO BOTTONE
-
-def backup_launch():
-   INIT_WRK_DIRECTORY = os.getcwd()
-   with open('./destinations.txt', 'r') as f:
-    destination = f.readline().strip()
-   elenco = os.path.join(INIT_WRK_DIRECTORY, 'source_folders.txt') 
-   os.chdir(destination)
-   with open('log.txt', 'w') as f:
-      pass
-   with open('Errors_log.txt', 'w') as f:
-      pass
-   with open(elenco, 'r') as f:
-      for line in f:
-        fld_one = line.strip()
-        os.system(f'cp -r -v {fld_one} {destination} 2>> Errors_log.txt >> log.txt')
-
-## OLD - AVVIO SHELL SCRIPT
-#def avvia_backup():
-#   print(subprocess.check_call("./Backup_dev.sh", shell=True))
+def avvia_backup():
+   print(subprocess.check_call("./Backup_dev.sh", shell=True))
 
 def appendi_percorso():
    with open("./source_folders.txt", "a") as f:
@@ -94,7 +72,7 @@ entry = ttk.Entry(frame1)
 entry.pack(side="top")
 
 #Bottone di avvio del processo di backup
-avviabkc_button = ttk.Button(frame1 ,text="Start backup", command = backup_launch)
+avviabkc_button = ttk.Button(frame1 ,text="Start backup", command = avvia_backup)
 avviabkc_button.pack(side="right", anchor="se")
     
 #bottone che appende il percorso in source_folders
